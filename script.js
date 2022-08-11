@@ -1,5 +1,7 @@
-( () => {
-  const btn = document.querySelector("[data-form-btn]");
+import checkComplete from './components/checkComplete.js';
+import deleteIcon from './components/deletIcon.js';
+
+const btn = document.querySelector("[data-form-btn]");
 
 
 const creatTask = (e) => {
@@ -16,30 +18,12 @@ const creatTask = (e) => {
     list.appendChild(task);
     task.appendChild(taskContent);
     taskContent.appendChild(checkComplete());
-    taskContent.appendChild(titleTask)
+    taskContent.appendChild(titleTask);
+    task.appendChild(deleteIcon());
+
     titleTask.innerText = value;
-    const content = `
-  <i class="fas fa-trash-alt trashIcon icon"></i>`
-
 };
-
-const checkComplete = () =>{
-    const i = document.createElement('i');
-    i.classList.add('far','fa-check-square', 'icon');
-    i.addEventListener("click", completeTask);
-    return i;
-}
-
 
 // arrow functions o funciones anonimas
 btn.addEventListener("click", creatTask);
 
-// Inmediately invoked function expression  IIFE
-
-const completeTask = (event) => {
-  const element = event.target;
-  element.classList.toggle("fas");
-  element.classList.toggle("far");
-  element.classList.toggle("completeIcon");
-};
-})();
